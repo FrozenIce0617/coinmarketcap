@@ -5,6 +5,7 @@ import Props from './types';
 
 const colors = {
   primary: palette('primary', 0),
+  secondary: palette('text', 0),
 };
 
 export const TypographyWrapper = styled.div<Props>`

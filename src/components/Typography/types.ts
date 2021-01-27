@@ -1,7 +1,7 @@
 type Props = {
   className?: string;
   variant?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  color?: 'primary';
+  color?: 'primary' | 'secondary';
   children?: React.ReactNode;
   style?: React.CSSProperties;
   align?: 'left' | 'right' | 'center';
