@@ -1,25 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+
+import store, { RootState } from './redux/store';
+import themes, { ThemeType } from './theme';
+import MainView from './containers/MainView';
+
+import 'antd/dist/antd.css';
+
+const Root: React.FC = () => {
+  const themeType = useSelector((state: RootState) => state.App.themeType);
+  const isLight = themeType === ThemeType.LIGHT;
+  const { light, dark } = themes;
+  const defaultTheme = isLight ? light : dark;
+
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <MainView />
+    </ThemeProvider>
+  );
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Root />
+    </Provider>
   );
 }
 
